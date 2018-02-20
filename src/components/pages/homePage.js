@@ -8,7 +8,7 @@ class HomePage extends Component {
         return (
             <div className="container-fluid">
                 <div className="homescreen">
-                    <span>
+                    <div className="content">
                         <h1>X-Data-Marketplace</h1>
                         <p>"You can have data without information, but you cannot have information without data" <br /> - Daniel Keys Moran.</p>
                         <ul>
@@ -22,7 +22,7 @@ class HomePage extends Component {
                                 <img src={require('../../Assets/icons/edit.png')} alt ="register" height="20px" width="20px" /><Link to="/Register"> Register</Link>
                             </li>
                         </ul>
-                    </span>
+                    </div>
                 </div>
             </div>
         );

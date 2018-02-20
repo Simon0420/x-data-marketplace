@@ -35,25 +35,27 @@ a {
   height: 730px;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  text-shadow: 5px 5px 8px white;
+  text-shadow: 5px 5px 20px white;
   font-size: 25px; }
-  .homescreen span {
+  .homescreen .content {
     position: relative;
-    top: 35%; }
-    .homescreen span a {
+    top: 35%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 50px; }
+    .homescreen .content a {
       line-height: normal;
       color: white; }
-    .homescreen span a:hover {
+    .homescreen .content a:hover {
       text-decoration: none;
       color: #ff1755;
       -webkit-transition: 0.4s ease-in-out;
       -moz-transition: 0.4s ease-in-out;
       transition: 0.4s ease-in-out; }
-    .homescreen span ul li {
+    .homescreen .content ul li {
       list-style-type: none;
       display: inline-block;
       margin-right: 10px; }
-    .homescreen span h1 {
+    .homescreen .content h1 {
       font-family: 'Open Sans', sans-serif;
       font-size: 54px; }
 
@@ -93,3 +95,16 @@ header {
       font-size: 19px;
       line-height: normal;
       color: white; }
+
+footer {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #505050;
+  color: azure;
+  height: 200px; }
+  footer .footerbox {
+    padding: 10px;
+    float: left; }
+    footer .footerbox ul li {
+      margin-right: 20px; }

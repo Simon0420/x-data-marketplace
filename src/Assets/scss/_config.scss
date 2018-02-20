@@ -56,12 +56,14 @@ a {
   height: 730px;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  text-shadow: 5px 5px 8px white;
+  text-shadow: 5px 5px 20px white;
   font-size: 25px;
 
-  span {
+  .content {
     position: relative;
     top: 35%;
+    background: rgba(0,0,0,0.6);
+    padding: 50px;
 
     a {
       line-height: normal;
