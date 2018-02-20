@@ -1,0 +1,95 @@
+/*
+Vars
+ */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  color: #010000;
+  font-weight: 400;
+  font-style: normal;
+  background: white; }
+
+a {
+  text-decoration: none;
+  -webkit-transition: 0.4s ease-in-out;
+  -moz-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  cursor: pointer; }
+  a:hover {
+    color: #ff1755;
+    text-decoration: none;
+    -webkit-transition: 0.4s ease-in-out;
+    -moz-transition: 0.4s ease-in-out;
+    transition: 0.4s ease-in-out; }
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+  line-height: 24px; }
+
+.homescreen {
+  background: url("../images/traffic_background_alt.jpg");
+  margin: 0;
+  padding: 0;
+  color: white;
+  height: 730px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 5px 5px 8px white;
+  font-size: 25px; }
+  .homescreen span {
+    position: relative;
+    top: 35%; }
+    .homescreen span a {
+      line-height: normal;
+      color: white; }
+    .homescreen span a:hover {
+      text-decoration: none;
+      color: #ff1755;
+      -webkit-transition: 0.4s ease-in-out;
+      -moz-transition: 0.4s ease-in-out;
+      transition: 0.4s ease-in-out; }
+    .homescreen span ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 10px; }
+    .homescreen span h1 {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 54px; }
+
+header {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #303030;
+  color: azure;
+  height: 50px; }
+  header .logo {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%); }
+  header nav,
+  header nav ul,
+  header nav ul li {
+    margin: 0;
+    padding: 0; }
+  header nav {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%); }
+    header nav ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 20px; }
+    header nav.last {
+      margin: 0; }
+    header nav a {
+      font-size: 19px;
+      line-height: normal;
+      color: white; }
