@@ -1,5 +1,7 @@
 @import "_config.scss";
 
+/* header */
+
 header {
   position: relative;
   display: block;
@@ -23,7 +25,8 @@ header {
 
   nav {
     position: absolute;
-    top: 50%; right: 15px;
+    top: 50%;
+    right: 15px;
     @include translateY(-50%);
 
     ul li {
@@ -44,22 +47,150 @@ header {
   }
 }
 
+/* search */
+
+// container
+.search-container {
+  .searchbox {
+    width: 300px;
+
+    label {
+      width: 100%;
+      position: relative;
+
+      &:before {
+        content: "\f4a4";
+        position: relative;
+        font-weight: lighter;
+        bottom: 2px;
+        left: 0;
+        font-size: 20px;
+      }
+    }
+
+    // main input
+    .twitter-typeahead,
+    .typeahead {
+      width: 100%; // full width input search
+      background: none;
+      border-bottom: solid 1px white;
+
+      .form-control {
+        animation: fadein ease-in 0.5s;
+        border: none;
+      }
+
+      .searchbox__input {
+        &.tt-hint {
+          opacity: 0 !important;
+        }
+      }
+
+      .tt-input {
+        color: white;
+      }
+    }
+  }
+}
+
+// dropdown menu container
+.tt-dropdown-menu {
+  animation: fadein ease-out 0.5s;
+  min-width: 100%;
+  margin-top: 2px;
+  padding: 0px 0;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.175);
+}
+
+// suggestions text
+.tt-suggestion {
+  padding: 3px 20px;
+  font-size: 18px;
+  line-height: 24px;
+
+  p {
+    margin: 5px 0; // suggestion list spacing
+  }
+
+  // hover styles
+  &.tt-cursor,
+  &:hover {
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/* footer */
+
 footer {
   position: relative;
-  display: block;
   width: 100%;
-  background: #505050;
   color: azure;
-  height: 200px;
+  height: 150px;
+  background: #505050;
 
-  .footerbox {
+  .footercontent {
+    width: 100%;
+    margin: 0 auto;
 
-    padding : 10px;
-    float:left;
 
-    ul li {
-      margin-right: 20px;
+    .footerbox {
+      position: relative;
+      padding : 10px;
+      padding-top: 20px;
+      float: left;
+
+      ul li {
+        list-style: none;
+        list-style-position: inherit;
+        margin-right: 30px;
+      }
+
+      .first {
+        font-style: italic;
+        font-size: 20px;
+      }
+    }
+
+    .vl {
+      border-right: 1px solid #303030;
+      height: 100px;
+      margin-top: 20px;
+      float: left;
     }
   }
 
+  .floatbreak{
+    clear: left;
+  }
+
+  .creditsgithub{
+    padding-top: 30px;
+    text-align: center;
+    position: relative;
+    background: #202020;
+    text-shadow: 1px 1px 1px black;
+
+    span {
+      display: block;
+      padding: 0 0 10px;
+      i {
+        margin-right: 5px;
+      }
+    }
+
+    a {
+      color: darken(white, 30);
+      transition:.7s;
+      padding: 8px;
+      &:hover, &:active {
+        color: $red;
+        transition:.7s;
+      }
+    }
+  }
 }
