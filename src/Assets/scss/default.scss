@@ -6,7 +6,7 @@ header {
   position: relative;
   display: block;
   width: 100%;
-  background: #303030;
+  background: #303031;
   color: azure;
   height: 50px;
 
@@ -192,5 +192,93 @@ footer {
         transition:.7s;
       }
     }
+  }
+}
+
+/* toolbar */
+
+.toolbar {
+  height: 40px;
+  background: #eeeeee;
+  color: black;
+
+  nav,
+  nav ul,
+  nav ul li{
+    margin: 0;
+    padding: 0;
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    right: 12px;
+    @include translateY(-50%);
+
+    ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    a {
+      font-size: 19px;
+      line-height: normal;
+      color: black;
+
+      &:hover, &:active {
+        color: $red;
+        transition:.7s;
+      }
+    }
+  }
+}
+
+/* menu */
+.menucontent {
+
+  .menu-item, .menu-item--small {
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  a {
+    &:hover, &:active {
+      color: $red;
+      transition:.7s;
+    }
+  }
+}
+
+.contentbox  {
+  position: relative;
+  padding: 50px 50px 50px 70px;
+  height: 600px;
+  font-size: 40px;
+  text-align: center;
+  vertical-align: middle;
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+    width: 300px;
+    height: 250px;
+    background: #303030;
+    padding-top: 20px;
+    float: left;
+    margin: 20px;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 4px 8px 0 rgba(180,180,180,0.5);
+  }
+
+  /* Add some padding inside the card container */
+  .container {
+    position: relative;
+    top: 10%;
+    font-size: 20px;
   }
 }

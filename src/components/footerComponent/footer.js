@@ -40,7 +40,7 @@ class Footer extends Component {
                 <div className="floatbreak"></div>
                 <div className="creditsgithub">
                     <span><a href="https://github.com/Simon0420" rel="author">Designed &amp; developed by Simon Beckmann</a></span>
-                    <span><a href="https://github.com/Simon0420/x-data-marketplace" title="View Github Repo"><i class="icon ion-social-github" aria-hidden="true"></i> View Code</a></span>
+                    <span><a href="https://github.com/Simon0420/x-data-marketplace" title="View Github Repo"><i class="icon ion-sociahubl-git" aria-hidden="true"></i> View Code</a></span>
                 </div>
             </footer>
         );

@@ -10,8 +10,11 @@ import Header from './components/headerComponent/header';
 import Footer from './components/footerComponent/footer';
 import Homepage from './components/pages/homePage';
 import Data from './components/pages/data'
+import Overview from "./components/pages/overview";
+
 //includes
 import './Assets/css/default.css'
+
 
 class App extends Component {
   render() {
@@ -22,6 +25,7 @@ class App extends Component {
 
           <Route exact path ='/' component={Homepage} />
           <Route exact path ='/data' component={Data} />
+          <Route exact path ='/overview' component={Overview} />
 
           <Footer/>
       </div>

@@ -14,10 +14,9 @@ class Header extends Component {
 
                 <nav>
                     <ul>
+                        <li><i class="ion-ios-search-strong" aria-hidden="true"></i></li>
                         <li><SearchBar/></li>
-                        <li className="first"><Link to="/">Home</Link></li>
-                        <li><Link to="/Login">Login</Link></li>
-                        <li className="last"><Link to="/Data">de | en</Link></li>
+                        <li className="last">de | en</li>
                     </ul>
                 </nav>
             </header>
