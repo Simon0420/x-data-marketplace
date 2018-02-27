@@ -13,13 +13,13 @@ class HomePage extends Component {
                         <p>"You can have data without information, but you cannot have information without data" <br /> - Daniel Keys Moran.</p>
                         <ul>
                             <li>
-                               <img src={require('../../Assets/icons/login.png')} alt ="login" height="20px" width="20px" /><Link to="/Overview"> Login</Link>
+                               <img src={require('../../Assets/icons/login.png')} alt ="login" height="20px" width="20px" /><Link to="/overview"> Login</Link>
                             </li>
                             <li>
                                 |
                             </li>
                             <li>
-                                <img src={require('../../Assets/icons/edit.png')} alt ="register" height="20px" width="20px" /><Link to="/Register"> Register</Link>
+                                <img src={require('../../Assets/icons/edit.png')} alt ="register" height="20px" width="20px" /><Link to="/register"> Register</Link>
                             </li>
                         </ul>
                     </div>

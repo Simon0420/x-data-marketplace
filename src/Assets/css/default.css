@@ -222,13 +222,13 @@ footer .creditsgithub {
 
 .contentbox {
   position: relative;
-  padding: 30px 0px 0px 0px;
   font-size: 40px;
   text-align: center;
   vertical-align: middle;
   /* On mouse-over, add a deeper shadow */
   /* Add some padding inside the card container */ }
   .contentbox .banner {
+    margin-top: 30px;
     padding-top: 50px;
     background: url("../images/snow_alt.jpg");
     height: 200px; }
@@ -236,23 +236,42 @@ footer .creditsgithub {
     width: 90%;
     margin: auto;
     text-align: center;
-    padding: 60px 100px 100px 100px; }
+    padding: 60px 60px 120px 60px; }
   .contentbox .card {
     /* Add shadows to create the "card" effect */
     position: relative;
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-    width: 300px;
-    height: 280px;
-    background: #303030;
-    padding-top: 20px;
-    margin: 10px; }
+    width: 250px;
+    height: 230px;
+    background: #d0d0d0;
+    padding-top: 10px;
+    margin: 25px;
+    color: black; }
   .contentbox .card:hover {
-    box-shadow: 0 4px 8px 0 rgba(180, 180, 180, 0.5); }
+    width: 255px;
+    height: 235px;
+    cursor: default;
+    color: #882288;
+    transition: 0.8s;
+    box-shadow: 0 4px 8px 0 #b4b4b4; }
   .contentbox .container {
     position: relative;
     top: 10%;
     font-size: 20px; }
 
 .datacontainer {
-  padding: 50px 100px 50px 100px; }
+  margin: 0; }
+  .datacontainer .banner {
+    font-size: 40px;
+    text-align: center;
+    background: url("../images/snow_alt.jpg");
+    height: 100px;
+    padding-top: 30px;
+    margin-top: 30px; }
+  .datacontainer .other {
+    margin: 60px;
+    margin-bottom: 0; }
+  .datacontainer .table {
+    padding: 60px;
+    padding-top: 0; }
