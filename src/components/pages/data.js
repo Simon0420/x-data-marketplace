@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { makeData, Logo, Tips } from "../utils/tableutils";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-
 import Toolbar from "../toolbarComponent/toolbar";
-import { push as Menu } from 'react-burger-menu'
+import { slide as Menu } from 'react-burger-menu'
 import SearchBar from "../headerComponent/searchbar";
 import matchSorter from 'match-sorter'
 
@@ -205,7 +204,7 @@ class Data extends Component {
                                             return (
                                             <div style={{padding: '15px'}}>
                                                 more details here (: <br />
-                                                <em>You can put anyy component you want here, even another React Table!</em><br />
+                                                <i>You can put any component you want here, even another React Table!</i>
                                             </div>
                                             );}}
                                     />

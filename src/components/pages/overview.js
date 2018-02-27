@@ -85,8 +85,13 @@ class Overview extends Component {
                 <main id="page-wrap">
                     <div className="container-fluid">
                         <div className="contentbox">
-                            <h1><i class="ion-home" aria-hidden="true"></i> Home</h1>
-                            <p>Welcome to the X-Data Marketplace.</p>
+                            <div className="banner">
+                                <i class="ion-home" aria-hidden="true"></i> Home
+                                <br/>
+                                <br/>
+                                <p>Welcome to the X-Data Marketplace.</p>
+                            </div>
+                            <div className="cards">
                             <div className="card">
                                     <i class="ion-bag" aria-hidden="true"></i>
                                     <div class="container">
@@ -98,29 +103,30 @@ class Overview extends Component {
                                 <i class="ion-stats-bars" aria-hidden="true"></i>
                                 <div class="container">
                                     <h2>My Data</h2>
-                                    <p>Description about the Market feature that allows to scroll all provided datasets.</p>
+                                    <p>Description about the Data feature that allows to scroll all owned datasets.</p>
                                 </div>
                             </div>
                             <div className="card">
                                 <i class="ion-shuffle" aria-hidden="true"></i>
                                 <div class="container">
                                     <h2>Integration</h2>
-                                    <p>Description about the Market feature that allows to scroll all provided datasets.</p>
+                                    <p>Description about the Integration feature that allows to integrate provided datasets.</p>
                                 </div>
                             </div>
                             <div className="card">
                                 <i class="ion-upload" aria-hidden="true"></i>
                                 <div class="container">
                                     <h2>Upload</h2>
-                                    <p>Description about the Market feature that allows to scroll all provided datasets.</p>
+                                    <p>Description about the Upload feature that allows to upload datasets.</p>
                                 </div>
                             </div>
                             <div className="card">
                                 <i class="ion-star" aria-hidden="true"></i>
                                 <div class="container">
                                     <h2>Services</h2>
-                                    <p>Description about the Market feature that allows to scroll all provided services.</p>
+                                    <p>Description about the Service feature that allows to scroll all provided services.</p>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>

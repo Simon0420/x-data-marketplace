@@ -12,7 +12,6 @@ class Footer extends Component {
                         <li>Socials</li>
                     </ul>
                 </div>
-                <div class="vl"></div>
                 <div className="footerbox">
                     <ul>
                         <li className ="first">Ressource</li>
@@ -20,7 +19,6 @@ class Footer extends Component {
                         <li>Training</li>
                     </ul>
                 </div>
-                <div class="vl"></div>
                 <div className="footerbox">
                     <ul>
                         <li className ="first">About</li>
@@ -28,7 +26,6 @@ class Footer extends Component {
                         <li>Team</li>
                     </ul>
                 </div>
-                <div class="vl"></div>
                 <div className="footerbox" >
                     <ul>
                         <li className ="first">Legal</li>
@@ -37,7 +34,6 @@ class Footer extends Component {
                     </ul>
                 </div>
                 </div>
-                <div className="floatbreak"></div>
                 <div className="creditsgithub">
                     <span><a href="https://github.com/Simon0420" rel="author">Designed &amp; developed by Simon Beckmann</a></span>
                     <span><a href="https://github.com/Simon0420/x-data-marketplace" title="View Github Repo"><i class="icon ion-sociahubl-git" aria-hidden="true"></i> View Code</a></span>

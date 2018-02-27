@@ -127,45 +127,29 @@ header {
 /* footer */
 
 footer {
-  position: relative;
-  width: 100%;
-  color: azure;
-  height: 150px;
-  background: #505050;
-
   .footercontent {
     width: 100%;
-    margin: 0 auto;
-
+    background: #505050;
 
     .footerbox {
-      position: relative;
-      padding : 10px;
+      display: inline-block;
+      text-align: left;
+      border-right: 1px solid #303030;
+      padding: 10px;
       padding-top: 20px;
-      float: left;
+      width: 300px;
 
       ul li {
         list-style: none;
         list-style-position: inherit;
         margin-right: 30px;
-      }
 
-      .first {
-        font-style: italic;
-        font-size: 20px;
+        &.first {
+          font-style: italic;
+          font-size: 20px;
+        }
       }
     }
-
-    .vl {
-      border-right: 1px solid #303030;
-      height: 100px;
-      margin-top: 20px;
-      float: left;
-    }
-  }
-
-  .floatbreak{
-    clear: left;
   }
 
   .creditsgithub{
@@ -174,7 +158,6 @@ footer {
     position: relative;
     background: #202020;
     text-shadow: 1px 1px 1px black;
-
     span {
       display: block;
       padding: 0 0 10px;
@@ -182,7 +165,6 @@ footer {
         margin-right: 5px;
       }
     }
-
     a {
       color: darken(white, 30);
       transition:.7s;
@@ -199,7 +181,7 @@ footer {
 
 .toolbar {
   height: 40px;
-  background: #eeeeee;
+  background: #d0d0d0;
   color: black;
 
   nav,
@@ -252,22 +234,34 @@ footer {
 
 .contentbox  {
   position: relative;
-  padding: 50px 50px 50px 70px;
-  height: 600px;
+  padding: 30px 0px 0px 0px;
   font-size: 40px;
   text-align: center;
   vertical-align: middle;
 
+  .banner {
+    padding-top: 50px;
+    background: url("../images/snow_alt.jpg");
+    height: 200px;
+  }
+
+  .cards {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 60px 100px 100px 100px;
+  }
+
   .card {
     /* Add shadows to create the "card" effect */
+    position: relative;
+    display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
-    transition: 0.3s;
     width: 300px;
-    height: 250px;
+    height: 280px;
     background: #303030;
     padding-top: 20px;
-    float: left;
-    margin: 20px;
+    margin: 10px;
   }
 
   /* On mouse-over, add a deeper shadow */
