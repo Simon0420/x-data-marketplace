@@ -50,6 +50,10 @@ const columns =
             {
                 Header: "Name",
                 accessor: "name",
+                style: {
+                    color: "#000000",
+                    background: "#ffffff",
+                },
                 Footer: () => <div style={{ textAlign: "center" }}>Name</div>,
                 filterMethod: (filter, rows) =>
                     matchSorter(rows, filter.value, { keys: ["name"] }),
