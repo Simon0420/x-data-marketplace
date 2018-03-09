@@ -1,9 +1,17 @@
 X-Data-Marketplace
 
 ## Table of Contents
-- [Todos]
-- [Interface]
-- [Login Options]
+- [Todos](#todos)
+- [Interface](#interface)
+- [Login Options](#login-options)
+
+## Todos
+- Style / Adapt Data Tables
+-- Expanded Data View -> Detailed View
+- Integration feature
+- Upload feature
+- Login / Register + Information about Account
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
