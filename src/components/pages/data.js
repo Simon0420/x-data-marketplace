@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { makeData, Logo, Tips } from "../utils/tableutils";
+import {makeData, Logo, Tips, extract} from "../utils/tableutils";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Toolbar from "../toolbarComponent/toolbar";

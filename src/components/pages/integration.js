@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { makeData, Logo, Tips } from "../utils/tableutils";
+import {makeData, Logo, Tips, randomArray} from "../utils/tableutils";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Toolbar from "../toolbarComponent/toolbar";
 import { slide as Menu } from 'react-burger-menu'
 import SearchBar from "../headerComponent/searchbar";
 import matchSorter from 'match-sorter'
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 var styles = {
     bmBurgerButton: {
@@ -42,12 +46,55 @@ var styles = {
     },
 }
 
+var second = [''];
+var dataarray = makeData();
+
+function getNames(data){
+    var list = [];
+    var arrayLength = data.length;
+    for (var i = 0; i < arrayLength; i++) {
+        list.push(data[i].name);
+    }
+    return list;
+}
+
+function getValueAndLabel(data){
+    var list = [];
+    var arrayLength = data.length;
+    for (var i = 0; i < arrayLength; i++) {
+        list.push({value: +data[i].name , label: data[i].name});
+    }
+    return list;
+}
+
+function getData(data){
+    var list = [];
+    var arrayLength = data.length;
+    for (var i = 0; i < arrayLength; i++) {
+        var dataLength = data[i].datatables.length;
+        for(var j = 0; j < dataLength; j++){
+            list.push(data[i].datatables[j]);
+        }
+    }
+    return list;
+}
+
+
+var array = getNames(dataarray);
+var tables = getData(dataarray);
+var opts = getValueAndLabel(dataarray);
+
 class Integration extends Component {
 
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
-            data: makeData(),
+            data: dataarray,
+            tables: tables,
+            array: array,
+            opts: opts,
+            second:second,
+            selectedOption: '',
             menuOpen: false
         }
     }
@@ -74,8 +121,25 @@ class Integration extends Component {
         this.setState({menuOpen: !this.state.menuOpen})
     }
 
+    _onSelect (option) {
+        for(var i = 0; i < dataarray.length; i++){
+            if(dataarray[i].name === option.label){
+                second = dataarray[i].datatables;
+                for(var j = 0; j < dataarray[i].datatables.length; j ++){
+                    second[j] = dataarray[i].datatables[j];
+                }
+            }
+        }
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption });
+    }
+
     render() {
-        const { data } = this.state;
+        const { data,array,tables,selectedOption } = this.state;
+        const value = selectedOption && selectedOption.value;
+
         return (
             <div id="toolbarcontainter">
                 <Toolbar />
@@ -99,8 +163,32 @@ class Integration extends Component {
                                     "The world is being re-shaped by the convergence of social, mobile, cloud, big data, community and other powerful forces. The combination of these technologies unlocks an incredible opportunity to connect everything together in a new way and is dramatically transforming the way we live and work."
                                     - Marc Benioff
                                 </p>
+                                <h3>Dataset-Integration</h3>
+                                <div className='datasetselection'>
+                                    1st Dataset
+                                    <Select
+                                        name="dataset-a"
+                                        value={value}
+                                        onChange={this.handleChange}
+                                        options={opts}
+                                    />
+                                    Data
+                                    <Dropdown options={tables} onChange={this._onSelect2} value={'Select data'} placeholder='Select data' />
+                                    <br />
+                                    <button>Choose</button>
+                                </div>
+                                <div className='datasetselection'>
+                                    1st Dataset
+                                    <Dropdown options={array} onChange={this._onSelect} value={'Select a dataset'} placeholder='Select an dataset' />
+                                    Data
+                                    <Dropdown options={second} onChange={this._onSelect2} value={'Select data'} placeholder='Select data' />
+                                    <br />
+                                    <button>Choose</button>
+                                </div>
+                                <div className='integrationdiv'>
+                                </div>
+                                <br />
                             </div>
-                            <br />
                         </div>
                     </main>
                 </div>

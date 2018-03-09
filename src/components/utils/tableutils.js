@@ -10,7 +10,7 @@ const range = len => {
     return arr;
 };
 
-const newPerson = () => {
+const newDataset = () => {
     const chance = Math.random();
     const sizeunit = chance > 0.66 ? "GB" : chance > 0.33 ? "MB" : "TB";
     return {
@@ -21,16 +21,26 @@ const newPerson = () => {
         type:
             chance > 0.66
                 ? "xml"
-                : chance > 0.33 ? "pdf" : "excel"
+                : chance > 0.33 ? "pdf" : "excel",
+        datatables: [
+            namor.generate({ words: 1, numbers: 0 }) + ' data',
+            namor.generate({ words: 1, numbers: 0 }) + ' data',
+            namor.generate({ words: 1, numbers: 0 }) + ' data'
+        ],
     };
 };
 
-export function makeData(len = 5553) {
+export function makeData(len = 553) {
     return range(len).map(d => {
         return {
-            ...newPerson(),
-            children: range(10).map(newPerson)
+            ...newDataset()
         };
+    });
+}
+
+export function randomArray(length) {
+    return Array.apply(null, Array(length)).map(function() {
+        return namor.generate({ words: 1, numbers: 0 }) + ' dataset'
     });
 }
 
