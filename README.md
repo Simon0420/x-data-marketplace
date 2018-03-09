@@ -11,7 +11,7 @@ X-Data-Marketplace
 - burger-menu
 - react-table
 - react-select
--...
+- ...
 
 ## Todos
 - Style / Adapt Data Tables
