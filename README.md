@@ -7,10 +7,25 @@ X-Data-Marketplace
 
 ## Todos
 - Style / Adapt Data Tables
--- Expanded Data View -> Detailed View
+    * Expanded Data View -> Detailed View
 - Integration feature
 - Upload feature
 - Login / Register + Information about Account
+
+## Interface
+- Datasets
+    * Provide all Datasets in JSON format, with unique ID
+    * Datasets -> Different "Tables"?
+- Account Information
+    * Owned Datasets
+    * Personal Integration?
+- Integrations
+    * Integration information in backend?
+- Data Upload
+    * hand over data files, with annotaed information
+    * return updated list of datasets?
+
+## Login Options
 
 
 
