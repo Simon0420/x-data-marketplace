@@ -1,9 +1,16 @@
 X-Data-Marketplace
 
 ## Table of Contents
+- [Used Projects](#used-projects)
 - [Todos](#todos)
 - [Interface](#interface)
 - [Login Options](#login-options)
+
+## Used Projects
+- Sass
+- burger-menu
+- react-table
+- react-select
 
 ## Todos
 - Style / Adapt Data Tables
@@ -29,8 +36,11 @@ X-Data-Marketplace
 - https://stormpath.com/blog/build-a-react-app-with-user-authentication
 - http://jasonwatmore.com/post/2017/09/16/react-redux-user-registration-and-login-tutorial-example
 
+End of the personalized Readme.
 
 ------------
+
+## React Project Information
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
