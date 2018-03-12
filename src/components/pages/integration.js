@@ -46,9 +46,6 @@ var styles = {
     },
 }
 
-var second = [''];
-var dataarray = makeData();
-
 function getNames(data){
     var list = [];
     var arrayLength = data.length;
@@ -79,24 +76,25 @@ function getData(data){
     return list;
 }
 
-
-var array = getNames(dataarray);
-var tables = getData(dataarray);
-var opts = getValueAndLabel(dataarray);
+const datasets = makeData();
+const datasetnamesarray = getNames(datasets);
+const datatablesarray = getData(datasets);
+const datasetarray_select = getValueAndLabel(datasets);
 
 class Integration extends Component {
 
     constructor (props) {
         super(props);
         this.state = {
-            data: dataarray,
-            tables: tables,
-            array: array,
-            opts: opts,
-            second:second,
+            selected: '',
             selectedOption: '',
+            datalist: [''],
+            data: '',
             menuOpen: false
         }
+        this._onSelectDataset = this._onSelectDataset.bind(this)
+        this._onSelectDatatable = this._onSelectDatatable.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
     showSettings (event){
@@ -121,15 +119,18 @@ class Integration extends Component {
         this.setState({menuOpen: !this.state.menuOpen})
     }
 
-    _onSelect (option) {
-        for(var i = 0; i < dataarray.length; i++){
-            if(dataarray[i].name === option.label){
-                second = dataarray[i].datatables;
-                for(var j = 0; j < dataarray[i].datatables.length; j ++){
-                    second[j] = dataarray[i].datatables[j];
-                }
+    _onSelectDataset (option) {
+        this.setState({selected: option});
+        for(var i = 0; i < datasets.length; i++){
+            if(option.label == datasets[i].name){
+                var temp = datasets[i].datatables;
+                this.setState({datalist: temp});
             }
         }
+    }
+
+    _onSelectDatatable (option) {
+        this.setState({data: option});
     }
 
     handleChange = (selectedOption) => {
@@ -137,8 +138,9 @@ class Integration extends Component {
     }
 
     render() {
-        const { data,array,tables,selectedOption } = this.state;
+        const { selectedOption,selected,datalist,data } = this.state;
         const value = selectedOption && selectedOption.value;
+        const placeHolderValue = typeof this.state.data === 'string' ? this.state.data : this.state.data.label
 
         return (
             <div id="toolbarcontainter">
@@ -170,22 +172,24 @@ class Integration extends Component {
                                         name="dataset-a"
                                         value={value}
                                         onChange={this.handleChange}
-                                        options={opts}
+                                        options={datasetarray_select}
                                     />
                                     Data
-                                    <Dropdown options={tables} onChange={this._onSelect2} value={'Select data'} placeholder='Select data' />
+                                    <Dropdown options={datatablesarray} onChange={this._onSelectDatatable} value={'Select data'} placeholder='Select data' />
                                     <br />
                                     <button>Choose</button>
                                 </div>
                                 <div className='datasetselection'>
-                                    1st Dataset
-                                    <Dropdown options={array} onChange={this._onSelect} value={'Select a dataset'} placeholder='Select an dataset' />
+                                    2nd Dataset
+                                    <Dropdown options={datasetnamesarray} onChange={this._onSelectDataset} value={selected} placeholder='Select an dataset' />
                                     Data
-                                    <Dropdown options={second} onChange={this._onSelect2} value={'Select data'} placeholder='Select data' />
+                                    <Dropdown options={datalist} onChange={this._onSelectDatatable} value={data} placeholder='Select data' />
                                     <br />
                                     <button>Choose</button>
                                 </div>
                                 <div className='integrationdiv'>
+                                    You selected
+                                    <strong> {placeHolderValue} </strong>
                                 </div>
                                 <br />
                             </div>
