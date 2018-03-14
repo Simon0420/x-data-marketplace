@@ -23,12 +23,20 @@ const newDataset = () => {
                 ? "xml"
                 : chance > 0.33 ? "pdf" : "excel",
         datatables: [
-            namor.generate({ words: 1, numbers: 0 }) + ' data',
-            namor.generate({ words: 1, numbers: 0 }) + ' data',
-            namor.generate({ words: 1, numbers: 0 }) + ' data'
-        ],
+            newDatatable(),
+            newDatatable(),
+            newDatatable()
+        ]
     };
 };
+
+const newDatatables = () => {
+    var random = Array(Math.floor(Math.random()*10)+1);
+    const table = random.map((item) =>
+            newDatatable(),
+    );
+    return {table};
+}
 
 export function makeData(len = 553) {
     return range(len).map(d => {
@@ -37,6 +45,19 @@ export function makeData(len = 553) {
         };
     });
 }
+
+const newDatatable = () => {
+    const chance = Math.random();
+    return {
+        name: namor.generate({ words: 1, numbers: 0 }) + ' data',
+        columns: [
+            namor.generate({ words: 1, numbers: 0 }),
+            namor.generate({ words: 1, numbers: 0 }),
+            namor.generate({ words: 1, numbers: 0 })
+        ],
+    };
+};
+
 
 export function randomArray(length) {
     return Array.apply(null, Array(length)).map(function() {

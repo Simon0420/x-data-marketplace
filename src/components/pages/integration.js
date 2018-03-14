@@ -10,6 +10,7 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import Datacolumn from "../integrationComponent/datacolumn";
 
 var styles = {
     bmBurgerButton: {
@@ -59,7 +60,7 @@ function getValueAndLabel(data){
     var list = [];
     var arrayLength = data.length;
     for (var i = 0; i < arrayLength; i++) {
-        list.push({value: +data[i].name , label: data[i].name});
+        list.push({value: data[i].name , label: data[i].name});
     }
     return list;
 }
@@ -78,23 +79,39 @@ function getData(data){
 
 const datasets = makeData();
 const datasetnamesarray = getNames(datasets);
-const datatablesarray = getData(datasets);
+
 const datasetarray_select = getValueAndLabel(datasets);
+
+function DosSth(props) {
+    const columns = props.columns
+    const table = columns.map((column) =>
+        <card>
+            {column}
+        </card>
+    );
+
+    return table;
+}
 
 class Integration extends Component {
 
     constructor (props) {
         super(props);
         this.state = {
-            selected: '',
-            selectedOption: '',
-            datalist: [''],
-            data: '',
+            selected_select: '',
+            selected_select1: '',
+            datalist_select: [''],
+            datalist_select1: [''],
+            data_select: '',
+            data_select1: '',
+            columns_select: [],
+            columns_select1: [],
             menuOpen: false
         }
-        this._onSelectDataset = this._onSelectDataset.bind(this)
-        this._onSelectDatatable = this._onSelectDatatable.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.handleChange2 = this.handleChange2.bind(this)
+        this.handleChange1 = this.handleChange1.bind(this)
+        this.handleChange21 = this.handleChange21.bind(this)
     }
 
     showSettings (event){
@@ -119,11 +136,17 @@ class Integration extends Component {
         this.setState({menuOpen: !this.state.menuOpen})
     }
 
+    /* OLD CODE, KEPT FOR BACKUP REASONS
     _onSelectDataset (option) {
-        this.setState({selected: option});
+        this.setState({selected: option, data: '', columns: []});
         for(var i = 0; i < datasets.length; i++){
             if(option.label == datasets[i].name){
-                var temp = datasets[i].datatables;
+                        var temp = [];
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(datasets[i].datatables[j] != null) {
+                        temp.push(datasets[i].datatables[j].name);
+                    }
+                }
                 this.setState({datalist: temp});
             }
         }
@@ -131,16 +154,103 @@ class Integration extends Component {
 
     _onSelectDatatable (option) {
         this.setState({data: option});
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected.label == datasets[i].name){
+                var temp = [];
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(option.label == datasets[i].datatables[j].name){
+                        for(var k = 0; k < datasets[i].datatables[j].columns.length; k++){
+                            temp.push(datasets[i].datatables[j].columns[k])
+                        }
+                    }
+                }
+                this.setState({columns: temp})
+            }
+        }
+    }*/
+
+    handleChange = (selected_select) => {
+        this.setState({ selected_select: selected_select, data_select: '', columns_select: []});
+        for(var i = 0; i < datasets.length; i++){
+            if(selected_select != null){
+                if(selected_select.label == datasets[i].name){
+                    var temp = [];
+                    for(var j= 0; j < datasets[i].datatables.length; j++){
+                        if(datasets[i].datatables[j] != null) {
+                            temp.push({value: datasets[i].datatables[j].name , label: datasets[i].datatables[j].name});
+                        }
+                    }
+                    this.setState({datalist_select: temp});
+                }
+            }
+        }
     }
 
-    handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
+    handleChange1 = (selected_select1) => {
+        this.setState({ selected_select1: selected_select1, data_select1: '', columns_select1: []});
+        for(var i = 0; i < datasets.length; i++){
+            if(selected_select1 != null){
+                if(selected_select1.label == datasets[i].name){
+                    var temp = [];
+                    for(var j= 0; j < datasets[i].datatables.length; j++){
+                        if(datasets[i].datatables[j] != null) {
+                            temp.push({value: datasets[i].datatables[j].name , label: datasets[i].datatables[j].name});
+                        }
+                    }
+                    this.setState({datalist_select1: temp});
+                }
+            }
+        }
+    }
+
+    handleChange2 = (data_select) => {
+        this.setState({ data_select });
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected_select.label == datasets[i].name){
+                var temp = [];
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(data_select != null){
+                        if(data_select.label == datasets[i].datatables[j].name){
+                            for(var k = 0; k < datasets[i].datatables[j].columns.length; k++){
+                                temp.push(datasets[i].datatables[j].columns[k])
+                            }
+                        }
+                    }
+                    else{
+                        this.setState({ data_select: '' });
+                    }
+                }
+                this.setState({columns_select: temp})
+            }
+        }
+    }
+
+    handleChange21 = (data_select1) => {
+        this.setState({ data_select1: data_select1 });
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected_select1.label == datasets[i].name){
+                var temp = [];
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(data_select1 != null){
+                        if(data_select1.label == datasets[i].datatables[j].name){
+                            for(var k = 0; k < datasets[i].datatables[j].columns.length; k++){
+                                temp.push(datasets[i].datatables[j].columns[k])
+                            }
+                        }
+                    }
+                    else{
+                        this.setState({ data_select1: '' });
+                    }
+                }
+                this.setState({columns_select1: temp})
+            }
+        }
     }
 
     render() {
-        const { selectedOption,selected,datalist,data } = this.state;
-        const value = selectedOption && selectedOption.value;
-        const placeHolderValue = typeof this.state.data === 'string' ? this.state.data : this.state.data.label
+        const { selected_select,selected_select1,datalist_select,datalist_select1,data_select,data_select1,columns_select,columns_select1 } = this.state;
+        const placeHolderValue_select = typeof this.state.data_select === 'string' ? this.state.data_select : this.state.data_select.label
+        const placeHolderValue_select1 = typeof this.state.data_select1 === 'string' ? this.state.data_select1 : this.state.data_select1.label
 
         return (
             <div id="toolbarcontainter">
@@ -166,30 +276,53 @@ class Integration extends Component {
                                     - Marc Benioff
                                 </p>
                                 <h3>Dataset-Integration</h3>
-                                <div className='datasetselection'>
+                                <div className='datasetselection first' >
                                     1st Dataset
                                     <Select
                                         name="dataset-a"
-                                        value={value}
+                                        value={selected_select}
                                         onChange={this.handleChange}
                                         options={datasetarray_select}
                                     />
                                     Data
-                                    <Dropdown options={datatablesarray} onChange={this._onSelectDatatable} value={'Select data'} placeholder='Select data' />
+                                    <Select
+                                        name="data-a"
+                                        value={data_select}
+                                        onChange={this.handleChange2}
+                                        options={datalist_select}
+                                    />
                                     <br />
-                                    <button>Choose</button>
                                 </div>
                                 <div className='datasetselection'>
                                     2nd Dataset
-                                    <Dropdown options={datasetnamesarray} onChange={this._onSelectDataset} value={selected} placeholder='Select an dataset' />
+                                    <Select
+                                        name="dataset-b"
+                                        value={selected_select1}
+                                        onChange={this.handleChange1}
+                                        options={datasetarray_select}
+                                    />
                                     Data
-                                    <Dropdown options={datalist} onChange={this._onSelectDatatable} value={data} placeholder='Select data' />
+                                    <Select
+                                        name="data-b"
+                                        value={data_select1}
+                                        onChange={this.handleChange21}
+                                        options={datalist_select1}
+                                    />
                                     <br />
-                                    <button>Choose</button>
                                 </div>
                                 <div className='integrationdiv'>
-                                    You selected
-                                    <strong> {placeHolderValue} </strong>
+                                    Selected data tables:
+                                    <br />
+                                    <div className="showdiv">
+                                        <div className="columns">
+                                            {placeHolderValue_select}
+                                            <DosSth columns={columns_select} />
+                                        </div>
+                                        <div className="columns">
+                                            {placeHolderValue_select1}
+                                            <DosSth columns={columns_select1} />
+                                        </div>
+                                    </div>
                                 </div>
                                 <br />
                             </div>
