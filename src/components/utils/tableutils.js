@@ -55,6 +55,7 @@ const newDatatable = () => {
             namor.generate({ words: 1, numbers: 0 }),
             namor.generate({ words: 1, numbers: 0 })
         ],
+        rules: [],
     };
 };
 

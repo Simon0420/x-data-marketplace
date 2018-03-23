@@ -270,10 +270,12 @@ footer .creditsgithub {
     padding-top: 30px;
     margin-top: 30px; }
   .datacontainer .other {
-    margin: 60px;
+    padding: 60px;
+    padding-bottom: 0px;
     margin-bottom: 0; }
   .datacontainer .table {
-    padding: 60px; }
+    padding: 60px;
+    padding-top: 0px; }
 
 .datasetselection {
   display: inline-block;
@@ -290,25 +292,80 @@ footer .creditsgithub {
   border-width: 2px;
   background: white;
   color: #202020;
-  padding: 30px; }
-  .integrationdiv .showdiv {
-    padding: 20px; }
-    .integrationdiv .showdiv .columns {
+  padding: 30px;
+  padding-top: 0px; }
+  .integrationdiv .showdiv .columns {
+    display: inline-block;
+    margin-right: 50px;
+    text-align: center; }
+    .integrationdiv .showdiv .columns .togglebutton {
+      width: 300px;
       display: inline-block;
-      margin-right: 50px;
-      text-align: center; }
-      .integrationdiv .showdiv .columns card {
-        display: block;
-        width: 300px;
-        border-style: solid;
-        border-color: black;
-        padding: 10px;
-        border-radius: 10px;
-        margin: 5px; }
-      .integrationdiv .showdiv .columns card:hover {
-        cursor: pointer;
-        background-color: #505050;
-        border-color: #505050;
-        color: white;
-        transition: 0.8s;
-        box-shadow: 0 4px 8px 0 #646464; }
+      border-style: solid;
+      border-color: black;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 5px; }
+    .integrationdiv .showdiv .columns .togglebutton:hover {
+      cursor: pointer;
+      background-color: #505050;
+      border-color: #505050;
+      color: white;
+      transition: 0.8s;
+      box-shadow: 0 4px 8px 0 #646464; }
+
+.integrationrules {
+  margin-top: 23px; }
+  .integrationrules form input {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    padding: 3px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd; }
+  .integrationrules form input.error {
+    border-color: red; }
+  .integrationrules form button {
+    display: block;
+    width: 100%;
+    appearance: none;
+    border-radius: 5px;
+    background-color: #84c00c;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    height: 40px;
+    margin-top: 10px; }
+  .integrationrules form button:hover {
+    background-color: #669509; }
+  .integrationrules form button:disabled {
+    background-color: #dbf99f;
+    color: #333; }
+  .integrationrules form button.small {
+    display: inline-block;
+    width: auto;
+    padding: 0 20px;
+    background-color: #777;
+    font-size: 14px; }
+  .integrationrules form button.small:hover {
+    background-color: #999; }
+  .integrationrules .rule {
+    display: flex;
+    align-items: center; }
+  .integrationrules .rule button {
+    margin: 0;
+    margin-left: 10px; }
+
+.integrationmenu {
+  margin-top: 23px;
+  display: block; }
+  .integrationmenu .buttonstyle {
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+
+.integrationinfo {
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: block; }

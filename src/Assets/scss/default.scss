@@ -298,12 +298,14 @@ footer {
   }
 
   .other {
-    margin: 60px;
+    padding: 60px;
+    padding-bottom: 0px;
     margin-bottom: 0;
   }
 
   .table {
     padding: 60px;
+    padding-top: 0px;
   }
 }
 
@@ -317,7 +319,7 @@ footer {
   padding-right: 10px;
 }
 
-.integrationdiv{
+.integrationdiv {
   border: black;
   border-radius: 6px;
   border-style: solid;
@@ -325,18 +327,17 @@ footer {
   background: white;
   color: #202020;
   padding: 30px;
+  padding-top: 0px;
 
-  .showdiv{
-    padding: 20px;
-
-    .columns{
+  .showdiv {
+    .columns {
       display: inline-block;
       margin-right: 50px;
       text-align: center;
 
-      card {
-        display: block;
+      .togglebutton {
         width: 300px;
+        display: inline-block;
         border-style: solid;
         border-color: black;
         padding: 10px;
@@ -344,14 +345,98 @@ footer {
         margin: 5px;
       }
 
-      card:hover {
+      .togglebutton:hover {
         cursor: pointer;
         background-color: #505050;
         border-color: #505050;
         color: white;
         transition: 0.8s;
-        box-shadow: 0 4px 8px 0 rgba(100,100,100,1.5);
+        box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 1.5);
       }
     }
   }
 }
+
+.integrationrules{
+  margin-top: 23px;
+
+  form {
+  }
+
+  form input {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    padding: 3px 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+
+  form input.error {
+    border-color: red;
+  }
+
+  form button {
+    display: block;
+    width: 100%;
+    appearance: none;
+    border-radius: 5px;
+    background-color: #84c00c;
+    color: #fff;
+    border: none;
+    font-size: 18px;
+    height: 40px;
+    margin-top: 10px;
+  }
+
+  form button:hover {
+    background-color: #669509;
+  }
+
+  form button:disabled {
+    background-color: #dbf99f;
+    color: #333;
+  }
+
+  form button.small {
+    display: inline-block;
+    width: auto;
+    padding: 0 20px;
+    background-color: #777;
+    font-size: 14px;
+  }
+
+  form button.small:hover {
+    background-color: #999;
+  }
+
+  .rule {
+    display: flex;
+    align-items: center;
+  }
+
+  .rule button {
+    margin: 0;
+    margin-left: 10px;
+  }
+}
+
+.integrationmenu{
+  margin-top: 23px;
+  display: block;
+
+  .buttonstyle{
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.integrationinfo{
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: block;
+}
+
+

@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
     "bloodhound-js": "^1.2.2",
-    "bootstrap": "^4.0.0",
     "match-sorter": "^2.2.0",
     "namor": "^1.0.1",
     "react": "^16.2.0",
     "react-background-image-loader": "0.0.5",
+    "react-bootstrap": "^0.32.1",
     "react-burger-menu": "^2.2.3",
     "react-dom": "^16.2.0",
     "react-dropdown": "^1.4.0",

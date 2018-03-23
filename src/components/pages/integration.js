@@ -11,6 +11,7 @@ import 'react-dropdown/style.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import Datacolumn from "../integrationComponent/datacolumn";
+import {ButtonToolbar, ToggleButton, ToggleButtonGroup,Button} from 'react-bootstrap';
 
 var styles = {
     bmBurgerButton: {
@@ -77,20 +78,27 @@ function getData(data){
     return list;
 }
 
-const datasets = makeData();
-const datasetnamesarray = getNames(datasets);
+var datasets = makeData();
+var datasetnamesarray = getNames(datasets);
+var datasetarray_select = getValueAndLabel(datasets);
 
-const datasetarray_select = getValueAndLabel(datasets);
-
-function DosSth(props) {
+function Datatable(props) {
     const columns = props.columns
+    const name = props.name
+    const integration = props.integration
+
+    var value = props.name === 'dt1' ? integration.state.tablevalue : integration.state.tablevalue2
+    var onClick = props.name === 'dt1' ? integration.handleChangerino : integration.handleChangerino2
+
     const table = columns.map((column) =>
-        <card>
-            {column}
-        </card>
+        <ToggleButton value={column} className="togglebutton">  {column}</ToggleButton>
     );
 
-    return table;
+    return (<ButtonToolbar>
+                <ToggleButtonGroup vertical type="radio" name={name} value={value} onChange={onClick}>
+                    {table}
+                </ToggleButtonGroup>
+            </ButtonToolbar>);
 }
 
 class Integration extends Component {
@@ -98,6 +106,7 @@ class Integration extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            //dropdowns
             selected_select: '',
             selected_select1: '',
             datalist_select: [''],
@@ -106,12 +115,26 @@ class Integration extends Component {
             data_select1: '',
             columns_select: [],
             columns_select1: [],
-            menuOpen: false
+            //menu
+            menuOpen: false,
+            //columns
+            tablevalue: '',
+            tablevalue2: '',
+            //rules
+            rules: [{ rule: '' }],
+            integrationmsg: '',
+
+            existingrules: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleChange2 = this.handleChange2.bind(this)
         this.handleChange1 = this.handleChange1.bind(this)
         this.handleChange21 = this.handleChange21.bind(this)
+
+        this.handleChangerino = this.handleChangerino.bind(this)
+        this.handleChangerino2 = this.handleChangerino2.bind(this)
+
+        this.handleIntegrate = this.handleIntegrate.bind(this)
     }
 
     showSettings (event){
@@ -135,39 +158,6 @@ class Integration extends Component {
     toggleMenu () {
         this.setState({menuOpen: !this.state.menuOpen})
     }
-
-    /* OLD CODE, KEPT FOR BACKUP REASONS
-    _onSelectDataset (option) {
-        this.setState({selected: option, data: '', columns: []});
-        for(var i = 0; i < datasets.length; i++){
-            if(option.label == datasets[i].name){
-                        var temp = [];
-                for(var j= 0; j < datasets[i].datatables.length; j++){
-                    if(datasets[i].datatables[j] != null) {
-                        temp.push(datasets[i].datatables[j].name);
-                    }
-                }
-                this.setState({datalist: temp});
-            }
-        }
-    }
-
-    _onSelectDatatable (option) {
-        this.setState({data: option});
-        for(var i = 0; i < datasets.length; i++){
-            if(this.state.selected.label == datasets[i].name){
-                var temp = [];
-                for(var j= 0; j < datasets[i].datatables.length; j++){
-                    if(option.label == datasets[i].datatables[j].name){
-                        for(var k = 0; k < datasets[i].datatables[j].columns.length; k++){
-                            temp.push(datasets[i].datatables[j].columns[k])
-                        }
-                    }
-                }
-                this.setState({columns: temp})
-            }
-        }
-    }*/
 
     handleChange = (selected_select) => {
         this.setState({ selected_select: selected_select, data_select: '', columns_select: []});
@@ -223,6 +213,23 @@ class Integration extends Component {
                 this.setState({columns_select: temp})
             }
         }
+
+
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected_select.label == datasets[i].name){
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                        var rulesstring ='';
+                        if(data_select.label == datasets[i].datatables[j].name){
+                            for(var k = 0; k < datasets[i].datatables[j].rules.length; k++){
+                                rulesstring = rulesstring +' connected with '+datasets[i].datatables[j].rules[k].dataset+', '+
+                                    datasets[i].datatables[j].rules[k].datatable+', '+
+                                    datasets[i].datatables[j].rules[k].attr+' by rule '+datasets[i].datatables[j].rules[k].rule+'; ';
+                            }
+                        }
+                        this.setState({existingrules: 'Existing integration rules for ' +data_select.label+ ': '+rulesstring});
+                }
+            }
+        }
     }
 
     handleChange21 = (data_select1) => {
@@ -247,8 +254,89 @@ class Integration extends Component {
         }
     }
 
+    handleChangerino(value){
+        this.setState({tablevalue : value})
+    }
+
+    handleChangerino2(value){
+        this.setState({tablevalue2 : value})
+    }
+
+    handleRuleChange = (idx) => (evt) => {
+        const newRules = this.state.rules.map((rules, sidx) => {
+            if (idx !== sidx) return rules;
+            return { ...rules, rule: evt.target.value };
+        });
+        this.setState({ rules: newRules });
+    }
+
+    handleAddRule = () => {
+        this.setState({ rules: this.state.rules.concat([{ rule: '' }]) });
+    }
+
+    handleRemoveRule = (idx) => () => {
+        this.setState({ rules: this.state.rules.filter((s, sidx) => idx !== sidx) });
+    }
+
+    rulesArrayToString(){
+        var rules = this.state.rules
+        var string = '';
+        for(var i = 0; i < rules.length-1; i++){
+            if(rules[i] != ''){
+                string = string + rules[i].rule + ' and \n'
+            }
+        }
+        string = string + rules[rules.length-1].rule;
+        return string;
+    }
+
+    handleIntegrate() {
+        var value1 = this.state.tablevalue
+        var value2 = this.state.tablevalue2
+        var rules = this.rulesArrayToString()
+
+        this.setState({ integrationmsg: 'Integrated '+this.state.columns_select[value1]+' with '+this.state.columns_select1[value2]+' according to the rules: '+rules});
+
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected_select.label == datasets[i].name){
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(this.state.data_select != null){
+                        if(this.state.data_select.label == datasets[i].datatables[j].name){
+                            for(var k = 0; k < this.state.rules.length; k++){
+                                var newRule = {rule: this.state.rules[k].rule, dataset: this.state.selected_select1.label, datatable: this.state.data_select.label, attr: this.state.data_select1}
+                                datasets[i].datatables[j].rules.push(newRule);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    getIntegrationRulesOfAnAttr(){
+        for(var i = 0; i < datasets.length; i++){
+            if(this.state.selected_select.label == datasets[i].name){
+                for(var j= 0; j < datasets[i].datatables.length; j++){
+                    if(this.state.data_select != null){
+                        if(this.state.data_select == datasets[i].datatables[j].name){
+
+                            var rulesstring ='';
+                            for(var k = 0; k < datasets[i].datatables[j].rules.length; k++){
+                                rulesstring = rulesstring +' connected with '+datasets[i].datatables[j].rules[k].dataset+', '+
+                                    datasets[i].datatables[j].rules[k].datatable+', '+
+                                    datasets[i].datatables[j].rules[k].attr+' by rule '+datasets[i].datatables[j].rules[k].rule+'; ';
+                            }
+
+                            return 'Existing integration rules for ' +this.state.data_select+ ':'+rulesstring;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     render() {
-        const { selected_select,selected_select1,datalist_select,datalist_select1,data_select,data_select1,columns_select,columns_select1 } = this.state;
+        const { selected_select,selected_select1,datalist_select,datalist_select1,data_select,data_select1,columns_select,columns_select1,rules,tablevalue2,tablevalue,integrationmsg,existingrules } = this.state;
         const placeHolderValue_select = typeof this.state.data_select === 'string' ? this.state.data_select : this.state.data_select.label
         const placeHolderValue_select1 = typeof this.state.data_select1 === 'string' ? this.state.data_select1 : this.state.data_select1.label
 
@@ -310,19 +398,58 @@ class Integration extends Component {
                                     />
                                     <br />
                                 </div>
-                                <div className='integrationdiv'>
-                                    Selected data tables:
+                                Select attributes to integrate:
+                                <div className="integrationdiv">
                                     <br />
                                     <div className="showdiv">
                                         <div className="columns">
                                             {placeHolderValue_select}
-                                            <DosSth columns={columns_select} />
+                                            <ButtonToolbar>
+                                                <ToggleButtonGroup vertical type="radio" name={"dt1"} defaultValue={0} value={tablevalue} onChange={this.handleChangerino}>
+                                                    {columns_select.map((column,idx) =>
+                                                        <ToggleButton value={idx} className="togglebutton">  {column}</ToggleButton>
+                                                    )}
+                                                </ToggleButtonGroup>
+                                            </ButtonToolbar>
                                         </div>
                                         <div className="columns">
                                             {placeHolderValue_select1}
-                                            <DosSth columns={columns_select1} />
+                                            <ButtonToolbar>
+                                                <ToggleButtonGroup vertical type="radio" name={"dt2"} defaultValue={0} value={tablevalue2} onChange={this.handleChangerino2}>
+                                                    {columns_select1.map((column, idx) =>
+                                                        <ToggleButton value={idx} className="togglebutton">  {column}</ToggleButton>
+                                                    )
+                                                    }
+                                                </ToggleButtonGroup>
+                                            </ButtonToolbar>
                                         </div>
                                     </div>
+                                </div>
+                                {existingrules}
+                                <div className ="integrationrules">
+                                Configure Integration rules
+                                    <form>
+                                    {this.state.rules.map((rule, idx) => (
+                                        <div className="rule">
+                                            <input
+                                                type="text"
+                                                placeholder={`Rule #${idx + 1}`}
+                                                value={rules.rule}
+                                                onChange={this.handleRuleChange(idx)}
+                                            />
+                                            <button type="button" onClick={this.handleRemoveRule(idx)} className="small">-</button>
+                                        </div>
+                                    ))}
+                                    <button type="button" onClick={this.handleAddRule} className="small">Add Rule</button>
+                                    </form>
+                                </div>
+                                <div className="integrationmenu">
+                                    Confirm/Cancel Integration<br/>
+                                    <Button className='buttonstyle' onClick={this.handleIntegrate}>  Integrate</Button>
+                                    <Button className='buttonstyle' onClick={this.handleCancel}>  Cancel</Button>
+                                </div>
+                                <div className={"integrationinfo"}>
+                                    {integrationmsg}
                                 </div>
                                 <br />
                             </div>
