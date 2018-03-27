@@ -277,13 +277,20 @@ footer .creditsgithub {
     padding: 60px;
     padding-top: 0px; }
 
-.datasetselection {
+.dataselection_overall .datasetselection {
   display: inline-block;
   padding: 0px;
-  width: 50%; }
+  width: 50%;
+  margin-bottom: 20px; }
 
-.first {
+.dataselection_overall .first {
   padding-right: 10px; }
+
+.dataselection_overall .rules {
+  display: inline-block;
+  padding: 0px;
+  width: 50%;
+  margin-bottom: 20px; }
 
 .integrationdiv {
   border: black;

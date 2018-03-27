@@ -309,15 +309,28 @@ footer {
   }
 }
 
-.datasetselection{
-  display: inline-block;
-  padding: 0px;
-  width: 50%;
+.dataselection_overall{
+  .datasetselection{
+    display: inline-block;
+    padding: 0px;
+    width: 50%;
+    margin-bottom: 20px;
+  }
+
+  .first{
+    padding-right: 10px;
+  }
+
+  .rules
+  {
+    display: inline-block;
+    padding: 0px;
+    width: 50%;
+    margin-bottom: 20px;
+  }
 }
 
-.first{
-  padding-right: 10px;
-}
+
 
 .integrationdiv {
   border: black;

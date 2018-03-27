@@ -6,6 +6,7 @@ import Toolbar from "../toolbarComponent/toolbar";
 import { slide as Menu } from 'react-burger-menu'
 import SearchBar from "../headerComponent/searchbar";
 import matchSorter from 'match-sorter'
+import Dialog from 'react-dialog'
 
 var styles = {
     bmBurgerButton: {

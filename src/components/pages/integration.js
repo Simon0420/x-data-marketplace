@@ -124,7 +124,11 @@ class Integration extends Component {
             rules: [{ rule: '' }],
             integrationmsg: '',
 
-            existingrules: ''
+            existingrules: '',
+            existingrules1: '',
+
+            // integration[]
+            integrations:[{datasetA:'setA', dataA:'dataA', attrA:'attrA', datasetB:'setB', dataB:'dataB', attrB:'attrB', rules:[{rule:''}]}],
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleChange2 = this.handleChange2.bind(this)
@@ -214,22 +218,30 @@ class Integration extends Component {
             }
         }
 
-
-        for(var i = 0; i < datasets.length; i++){
-            if(this.state.selected_select.label == datasets[i].name){
-                for(var j= 0; j < datasets[i].datatables.length; j++){
-                        var rulesstring ='';
-                        if(data_select.label == datasets[i].datatables[j].name){
-                            for(var k = 0; k < datasets[i].datatables[j].rules.length; k++){
-                                rulesstring = rulesstring +' connected with '+datasets[i].datatables[j].rules[k].dataset+', '+
-                                    datasets[i].datatables[j].rules[k].datatable+', '+
-                                    datasets[i].datatables[j].rules[k].attr+' by rule '+datasets[i].datatables[j].rules[k].rule+'; ';
-                            }
-                        }
-                        this.setState({existingrules: 'Existing integration rules for ' +data_select.label+ ': '+rulesstring});
+        var rulesstring ='';
+        for(var i = 0; i < this.state.integrations.length; i++){
+            if(this.state.integrations[i].datasetA == this.state.selected_select.label){
+                if(this.state.integrations[i].dataA == data_select.label){
+                    rulesstring = rulesstring +'Attribute '+this.state.integrations[i].attrA+' connected with '+this.state.integrations[i].datasetB+', '+
+                        this.state.integrations[i].dataB+', '+this.state.integrations[i].attrB+', by rules: ';
+                    for(var k = 0; k < this.state.integrations[i].rules.length-1; k++){
+                        rulesstring = rulesstring + this.state.integrations[i].rules[k].rule+', ';
+                    }
+                    rulesstring = rulesstring + this.state.integrations[i].rules[this.state.integrations[i].rules.length-1].rule+'; ';
+                }
+            }
+            if(this.state.integrations[i].datasetB == this.state.selected_select.label){
+                if(this.state.integrations[i].dataB == data_select.label){
+                    rulesstring = rulesstring +'Attribute '+this.state.integrations[i].attrB+' connected with '+this.state.integrations[i].datasetA+', '+
+                        this.state.integrations[i].dataA+', '+this.state.integrations[i].attrA+', by rules: ';
+                    for(var k = 0; k < this.state.integrations[i].rules.length-1; k++){
+                        rulesstring = rulesstring + this.state.integrations[i].rules[k].rule+', ';
+                    }
+                    rulesstring = rulesstring + this.state.integrations[i].rules[this.state.integrations[i].rules.length-1].rule+'; ';
                 }
             }
         }
+        this.setState({existingrules: 'Existing integration rules for ' +data_select.label+ ': '+rulesstring});
     }
 
     handleChange21 = (data_select1) => {
@@ -252,6 +264,31 @@ class Integration extends Component {
                 this.setState({columns_select1: temp})
             }
         }
+
+        var rulesstring ='';
+        for(var i = 0; i < this.state.integrations.length; i++){
+            if(this.state.integrations[i].datasetA == this.state.selected_select1.label){
+                if(this.state.integrations[i].dataA == data_select1.label){
+                    rulesstring = rulesstring +'Attribute '+this.state.integrations[i].attrA+' connected with '+this.state.integrations[i].datasetB+', '+
+                        this.state.integrations[i].dataB+', '+this.state.integrations[i].attrB+', by rules: ';
+                    for(var k = 0; k < this.state.integrations[i].rules.length-1; k++){
+                        rulesstring = rulesstring + this.state.integrations[i].rules[k].rule+', ';
+                    }
+                    rulesstring = rulesstring + this.state.integrations[i].rules[this.state.integrations[i].rules.length-1].rule+'; ';
+                }
+            }
+            if(this.state.integrations[i].datasetB == this.state.selected_select1.label){
+                if(this.state.integrations[i].dataB == data_select1.label){
+                    rulesstring = rulesstring +'Attribute '+this.state.integrations[i].attrB+' connected with '+this.state.integrations[i].datasetA+', '+
+                        this.state.integrations[i].dataA+', '+this.state.integrations[i].attrA+', by rules: ';
+                    for(var k = 0; k < this.state.integrations[i].rules.length-1; k++){
+                        rulesstring = rulesstring + this.state.integrations[i].rules[k].rule+', ';
+                    }
+                    rulesstring = rulesstring + this.state.integrations[i].rules[this.state.integrations[i].rules.length-1].rule+'; ';
+                }
+            }
+        }
+        this.setState({existingrules1: 'Existing integration rules for ' +data_select1.label+ ': '+rulesstring});
     }
 
     handleChangerino(value){
@@ -311,32 +348,13 @@ class Integration extends Component {
                 }
             }
         }
+
+        this.setState({ integrations: this.state.integrations.concat([{datasetA:this.state.selected_select.label, dataA:this.state.data_select.label, datasetB:this.state.selected_select1.label, dataB:this.state.data_select1.label, attrA:this.state.columns_select[this.state.tablevalue], attrB:this.state.columns_select1[this.state.tablevalue2], rules:this.state.rules}])})
     }
 
-    getIntegrationRulesOfAnAttr(){
-        for(var i = 0; i < datasets.length; i++){
-            if(this.state.selected_select.label == datasets[i].name){
-                for(var j= 0; j < datasets[i].datatables.length; j++){
-                    if(this.state.data_select != null){
-                        if(this.state.data_select == datasets[i].datatables[j].name){
-
-                            var rulesstring ='';
-                            for(var k = 0; k < datasets[i].datatables[j].rules.length; k++){
-                                rulesstring = rulesstring +' connected with '+datasets[i].datatables[j].rules[k].dataset+', '+
-                                    datasets[i].datatables[j].rules[k].datatable+', '+
-                                    datasets[i].datatables[j].rules[k].attr+' by rule '+datasets[i].datatables[j].rules[k].rule+'; ';
-                            }
-
-                            return 'Existing integration rules for ' +this.state.data_select+ ':'+rulesstring;
-                        }
-                    }
-                }
-            }
-        }
-    }
 
     render() {
-        const { selected_select,selected_select1,datalist_select,datalist_select1,data_select,data_select1,columns_select,columns_select1,rules,tablevalue2,tablevalue,integrationmsg,existingrules } = this.state;
+        const { selected_select,selected_select1,datalist_select,datalist_select1,data_select,data_select1,columns_select,columns_select1,rules,tablevalue2,tablevalue,integrationmsg,existingrules,existingrules1 } = this.state;
         const placeHolderValue_select = typeof this.state.data_select === 'string' ? this.state.data_select : this.state.data_select.label
         const placeHolderValue_select1 = typeof this.state.data_select1 === 'string' ? this.state.data_select1 : this.state.data_select1.label
 
@@ -364,6 +382,7 @@ class Integration extends Component {
                                     - Marc Benioff
                                 </p>
                                 <h3>Dataset-Integration</h3>
+                                <div className ='dataselection_overall'>
                                 <div className='datasetselection first' >
                                     1st Dataset
                                     <Select
@@ -379,7 +398,6 @@ class Integration extends Component {
                                         onChange={this.handleChange2}
                                         options={datalist_select}
                                     />
-                                    <br />
                                 </div>
                                 <div className='datasetselection'>
                                     2nd Dataset
@@ -396,7 +414,11 @@ class Integration extends Component {
                                         onChange={this.handleChange21}
                                         options={datalist_select1}
                                     />
-                                    <br />
+                                </div>
+                                    <div className='rules first'>{existingrules}
+                                    </div>
+                                    <div className='rules'>{existingrules1}
+                                    </div>
                                 </div>
                                 Select attributes to integrate:
                                 <div className="integrationdiv">
@@ -425,7 +447,6 @@ class Integration extends Component {
                                         </div>
                                     </div>
                                 </div>
-                                {existingrules}
                                 <div className ="integrationrules">
                                 Configure Integration rules
                                     <form>
