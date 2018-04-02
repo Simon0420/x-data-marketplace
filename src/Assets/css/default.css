@@ -376,3 +376,17 @@ footer .creditsgithub {
   margin-top: 10px;
   margin-bottom: 40px;
   display: block; }
+
+.exchangeable {
+  margin-bottom: 100px; }
+  .exchangeable .link {
+    background-color: #505050;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    padding: 5px;
+    margin-right: 10px; }
+  .exchangeable .link:hover {
+    color: #ff1755;
+    transition: 1s; }

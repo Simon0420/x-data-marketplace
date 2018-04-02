@@ -18,6 +18,9 @@ import Upload from "./components/pages/upload";
 
 //includes
 import './Assets/css/default.css'
+import Dynamic from "./components/pages/upload/dynamic";
+import Central from "./components/pages/upload/central";
+import CentralLocation from "./components/pages/upload/centrallocation";
 
 
 class App extends Component {
@@ -34,6 +37,9 @@ class App extends Component {
           <Route exact path ='/services' component={Service} />
           <Route exact path ='/integration' component={Integration} />
           <Route exact path ='/upload' component={Upload} />
+          <Route exact path ='/upload/dynamic' component={Dynamic} />
+          <Route exact path ='/upload/central' component={Central} />
+          <Route exact path ='/upload/central/description' component={CentralLocation} />
 
           <Footer/>
       </div>
