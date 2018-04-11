@@ -54,7 +54,7 @@ function DatatableVisual(props) {
     const integration = props.integration
 
     var value = props.name === 'dt1' ? integration.state.tablevalue : integration.state.tablevalue2
-    var onClick = props.name === 'dt1' ? integration.handleChangerino : integration.handleChangerino2
+    var onClick = props.name === 'dt1' ? integration.handleAttributeButtonChange : integration.handleAttributeButtonChange2
 
     const table = columns.map((column) =>
         <ToggleButton value={column} className="togglebutton">  {column}</ToggleButton>
@@ -72,35 +72,47 @@ class Integration extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            //dropdowns
+            //---dropdowns---
+
+            //selected datasets 1 & 2
             selected_select: '',
             selected_select1: '',
+
+            //options for selected datasets [data]
             datalist_select: [''],
             datalist_select1: [''],
+
+            //selected data 1 & 2
             data_select: '',
             data_select1: '',
+
+            //options for selected data [attributes]
             columns_select: [],
             columns_select1: [],
-            //columns
+
+            //---visual columns---
             tablevalue: '',
             tablevalue2: '',
-            //rules
+
+            //---rules---
             rules: [{ rule: '' }],
             integrationmsg: '',
 
             existingrules: '',
             existingrules1: '',
 
-            // integration[]
+            //---integrations[]---
             integrations:[{datasetA:'setA', dataA:'dataA', attrA:'attrA', datasetB:'setB', dataB:'dataB', attrB:'attrB', rules:[{rule:''}]}],
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.handleChange2 = this.handleChange2.bind(this)
-        this.handleChange1 = this.handleChange1.bind(this)
-        this.handleChange21 = this.handleChange21.bind(this)
 
-        this.handleChangerino = this.handleChangerino.bind(this)
-        this.handleChangerino2 = this.handleChangerino2.bind(this)
+        this.handleDatasetSelectChange = this.handleDatasetSelectChange.bind(this)
+        this.handleDatasetSelectChange1 = this.handleDatasetSelectChange1.bind(this)
+
+        this.handleDataSelectChange = this.handleDataSelectChange.bind(this)
+        this.handleDataSelectChange1 = this.handleDataSelectChange1.bind(this)
+
+        this.handleAttributeButtonChange = this.handleAttributeButtonChange.bind(this)
+        this.handleAttributeButtonChange2 = this.handleAttributeButtonChange2.bind(this)
 
         this.handleIntegrate = this.handleIntegrate.bind(this)
     }
@@ -109,7 +121,7 @@ class Integration extends Component {
         event.preventDefault();
     }
 
-    handleChange = (selected_select) => {
+    handleDatasetSelectChange = (selected_select) => {
         this.setState({ selected_select: selected_select, data_select: '', columns_select: []});
         for(var i = 0; i < datasets.length; i++){
             if(selected_select != null){
@@ -126,7 +138,7 @@ class Integration extends Component {
         }
     }
 
-    handleChange1 = (selected_select1) => {
+    handleDatasetSelectChange1 = (selected_select1) => {
         this.setState({ selected_select1: selected_select1, data_select1: '', columns_select1: []});
         for(var i = 0; i < datasets.length; i++){
             if(selected_select1 != null){
@@ -143,7 +155,7 @@ class Integration extends Component {
         }
     }
 
-    handleChange2 = (data_select) => {
+    handleDataSelectChange = (data_select) => {
         this.setState({ data_select });
         for(var i = 0; i < datasets.length; i++){
             if(this.state.selected_select.label == datasets[i].name){
@@ -190,7 +202,7 @@ class Integration extends Component {
         this.setState({existingrules: 'Existing integration rules for ' +data_select.label+ ': '+rulesstring});
     }
 
-    handleChange21 = (data_select1) => {
+    handleDataSelectChange1 = (data_select1) => {
         this.setState({ data_select1: data_select1 });
         for(var i = 0; i < datasets.length; i++){
             if(this.state.selected_select1.label == datasets[i].name){
@@ -237,11 +249,11 @@ class Integration extends Component {
         this.setState({existingrules1: 'Existing integration rules for ' +data_select1.label+ ': '+rulesstring});
     }
 
-    handleChangerino(value){
+    handleAttributeButtonChange(value){
         this.setState({tablevalue : value})
     }
 
-    handleChangerino2(value){
+    handleAttributeButtonChange2(value){
         this.setState({tablevalue2 : value})
     }
 
@@ -326,14 +338,14 @@ class Integration extends Component {
                                     <Select
                                         name="dataset-a"
                                         value={selected_select}
-                                        onChange={this.handleChange}
+                                        onChange={this.handleDatasetSelectChange}
                                         options={datasetarray_select}
                                     />
                                     Data
                                     <Select
                                         name="data-a"
                                         value={data_select}
-                                        onChange={this.handleChange2}
+                                        onChange={this.handleDataSelectChange}
                                         options={datalist_select}
                                     />
                                 </div>
@@ -342,14 +354,14 @@ class Integration extends Component {
                                     <Select
                                         name="dataset-b"
                                         value={selected_select1}
-                                        onChange={this.handleChange1}
+                                        onChange={this.handleDatasetSelectChange1}
                                         options={datasetarray_select}
                                     />
                                     Data
                                     <Select
                                         name="data-b"
                                         value={data_select1}
-                                        onChange={this.handleChange21}
+                                        onChange={this.handleDataSelectChange1}
                                         options={datalist_select1}
                                     />
                                 </div>
@@ -365,7 +377,7 @@ class Integration extends Component {
                                         <div className="columns">
                                             {placeHolderValue_select}
                                             <ButtonToolbar>
-                                                <ToggleButtonGroup vertical type="radio" name={"dt1"} defaultValue={0} value={tablevalue} onChange={this.handleChangerino}>
+                                                <ToggleButtonGroup vertical type="radio" name={"dt1"} defaultValue={0} value={tablevalue} onChange={this.handleAttributeButtonChange}>
                                                     {columns_select.map((column,idx) =>
                                                         <ToggleButton value={idx} className="togglebutton">  {column}</ToggleButton>
                                                     )}
@@ -375,7 +387,7 @@ class Integration extends Component {
                                         <div className="columns">
                                             {placeHolderValue_select1}
                                             <ButtonToolbar>
-                                                <ToggleButtonGroup vertical type="radio" name={"dt2"} defaultValue={0} value={tablevalue2} onChange={this.handleChangerino2}>
+                                                <ToggleButtonGroup vertical type="radio" name={"dt2"} defaultValue={0} value={tablevalue2} onChange={this.handleAttributeButtonChange2}>
                                                     {columns_select1.map((column, idx) =>
                                                         <ToggleButton value={idx} className="togglebutton">  {column}</ToggleButton>
                                                     )
