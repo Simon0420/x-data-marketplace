@@ -8,7 +8,7 @@ class HomePage extends Component {
         return (
             <div className="container-fluid">
                 <div className="homescreen">
-                    <div className="content">
+                    <div className="homepagecontent">
                         <h1>X-Data-Marketplace</h1>
                         <p>"You can have data without information, but you cannot have information without data" <br /> - Daniel Keys Moran.</p>
                         <ul>

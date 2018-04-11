@@ -1,0 +1,39 @@
+@import "../_config.scss";
+
+/* toolbar */
+.toolbar {
+  height: 40px;
+  background: #d0d0d0;
+  color: black;
+
+  nav,
+  nav ul,
+  nav ul li{
+    margin: 0;
+    padding: 0;
+  }
+
+  nav {
+    position: absolute;
+    top: 70px;
+    right: 12px;
+    @include translateY(-50%);
+
+    ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    a {
+      font-size: 19px;
+      line-height: normal;
+      color: black;
+
+      &:hover, &:active {
+        color: $red;
+        transition:.7s;
+      }
+    }
+  }
+}

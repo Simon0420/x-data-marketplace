@@ -1,291 +1,43 @@
 @import "_config.scss";
 
-/* header */
+@import "pages/integration.scss";
+@import "pages/upload.scss";
+@import "pages/homepage.scss";
 
-header {
-  position: relative;
-  display: block;
-  width: 100%;
-  background: #303031;
-  color: azure;
-  height: 50px;
+@import "components/toolbar.scss";
+@import "components/menu.scss";
+@import "components/header.scss";
+@import "components/footer.scss";
 
-  .logo {
-    position: absolute;
-    top: 50%; left: 15px;
-    @include translateY(-50%);
-  }
 
-  nav,
-  nav ul,
-  nav ul li{
-    margin: 0;
-    padding: 0;
-  }
-
-  nav {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    @include translateY(-50%);
-
-    ul li {
-      list-style-type: none;
-      display: inline-block;
-      margin-right: 20px;
-    }
-
-    &.last {
-      margin: 0;
-    }
-
-    a {
-      font-size: 19px;
-      line-height: normal;
-      color: white;
-    }
-  }
-}
-
-/* search */
-
-// container
-.search-container {
-  .searchbox {
-    width: 300px;
-
-    label {
-      width: 100%;
-      position: relative;
-
-      &:before {
-        content: "\f4a4";
-        position: relative;
-        font-weight: lighter;
-        bottom: 2px;
-        left: 0;
-        font-size: 20px;
-      }
-    }
-
-    // main input
-    .twitter-typeahead,
-    .typeahead {
-      width: 100%; // full width input search
-      background: none;
-      border-bottom: solid 1px white;
-
-      .form-control {
-        animation: fadein ease-in 0.5s;
-        border: none;
-      }
-
-      .searchbox__input {
-        &.tt-hint {
-          opacity: 0 !important;
-        }
-      }
-
-      .tt-input {
-        color: white;
-      }
-    }
-  }
-}
-
-// dropdown menu container
-.tt-dropdown-menu {
-  animation: fadein ease-out 0.5s;
-  min-width: 100%;
-  margin-top: 2px;
-  padding: 0px 0;
-  background: rgba(0, 0, 0, 0.85);
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.175);
-}
-
-// suggestions text
-.tt-suggestion {
-  padding: 3px 20px;
+body {
+  font-family: 'Open Sans', sans-serif;
   font-size: 18px;
+  color: white;
+  font-weight: 400;
+  font-style: normal;
+  background: #202020;
+}
+
+a {
+  text-decoration: none;
+  @include transition(.4s ease-in-out);
+  cursor: pointer;
+
+  &:hover {
+    color: $red;
+    text-decoration: none;
+    @include transition(.4s ease-in-out);
+  }
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
   line-height: 24px;
-
-  p {
-    margin: 5px 0; // suggestion list spacing
-  }
-
-  // hover styles
-  &.tt-cursor,
-  &:hover {
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
 }
 
-/* footer */
-
-footer {
-
-  .footercontent {
-    width: 100%;
-    background: #505050;
-
-    .footerbox {
-      display: inline-block;
-      text-align: left;
-      border-right: 1px solid #303030;
-      padding: 10px;
-      padding-top: 20px;
-      width: 300px;
-
-      ul li {
-        list-style: none;
-        list-style-position: inherit;
-        margin-right: 30px;
-
-        &.first {
-          font-style: italic;
-          font-size: 20px;
-        }
-      }
-    }
-  }
-
-  .creditsgithub{
-    padding-top: 30px;
-    text-align: center;
-    position: relative;
-    background: #202020;
-    text-shadow: 1px 1px 1px black;
-    span {
-      display: block;
-      padding: 0 0 10px;
-      i {
-        margin-right: 5px;
-      }
-    }
-    a {
-      color: darken(white, 30);
-      transition:.7s;
-      padding: 8px;
-      &:hover, &:active {
-        color: $red;
-        transition:.7s;
-      }
-    }
-  }
-}
-
-/* toolbar */
-
-.toolbar {
-  height: 40px;
-  background: #d0d0d0;
-  color: black;
-
-  nav,
-  nav ul,
-  nav ul li{
-    margin: 0;
-    padding: 0;
-  }
-
-  nav {
-    position: absolute;
-    top: 70px;
-    right: 12px;
-    @include translateY(-50%);
-
-    ul li {
-      list-style-type: none;
-      display: inline-block;
-      margin-right: 20px;
-    }
-
-    a {
-      font-size: 19px;
-      line-height: normal;
-      color: black;
-
-      &:hover, &:active {
-        color: $red;
-        transition:.7s;
-      }
-    }
-  }
-}
-
-/* menu */
-.menucontent {
-
-  .menu-item, .menu-item--small {
-    color: white;
-    margin-bottom: 5px;
-  }
-
-  a {
-    &:hover, &:active {
-      color: $red;
-      transition:.7s;
-    }
-  }
-}
-
-.contentbox  {
-  position: relative;
-  font-size: 40px;
-  text-align: center;
-  vertical-align: middle;
-
-  .banner {
-    margin-top: 30px;
-    padding-top: 50px;
-    background: url("../images/snow_alt.jpg");
-    height: 200px;
-  }
-
-  .cards {
-    width: 90%;
-    margin: auto;
-    text-align: center;
-    padding: 60px 60px 60px 60px;
-  }
-
-  .card {
-    /* Add shadows to create the "card" effect */
-    position: relative;
-    display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
-    width: 250px;
-    height: 230px;
-    background: #d0d0d0;
-    padding-top: 10px;
-    margin: 25px;
-    color:black;
-  }
-
-  /* On mouse-over, add a deeper shadow */
-  .card:hover {
-    width: 255px;
-    height: 235px;
-    cursor: default;
-    color: #882288;
-    transition: 0.8s;
-    box-shadow: 0 4px 8px 0 rgba(180,180,180,1.5);
-  }
-
-  /* Add some padding inside the card container */
-  .container {
-    position: relative;
-    top: 10%;
-    font-size: 20px;
-  }
-}
-
-.datacontainer {
-
+.maincontainer {
   margin: 0;
 
   .banner {
@@ -306,168 +58,5 @@ footer {
   .table {
     padding: 60px;
     padding-top: 0px;
-  }
-}
-
-.dataselection_overall{
-  .datasetselection{
-    display: inline-block;
-    padding: 0px;
-    width: 50%;
-    margin-bottom: 20px;
-  }
-
-  .first{
-    padding-right: 10px;
-  }
-
-  .rules
-  {
-    display: inline-block;
-    padding: 0px;
-    width: 50%;
-    margin-bottom: 20px;
-  }
-}
-
-
-
-.integrationdiv {
-  border: black;
-  border-radius: 6px;
-  border-style: solid;
-  border-width: 2px;
-  background: white;
-  color: #202020;
-  padding: 30px;
-  padding-top: 0px;
-
-  .showdiv {
-    .columns {
-      display: inline-block;
-      margin-right: 50px;
-      text-align: center;
-
-      .togglebutton {
-        width: 300px;
-        display: inline-block;
-        border-style: solid;
-        border-color: black;
-        padding: 10px;
-        border-radius: 10px;
-        margin: 5px;
-      }
-
-      .togglebutton:hover {
-        cursor: pointer;
-        background-color: #505050;
-        border-color: #505050;
-        color: white;
-        transition: 0.8s;
-        box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 1.5);
-      }
-    }
-  }
-}
-
-.integrationrules{
-  margin-top: 23px;
-
-  form {
-  }
-
-  form input {
-    display: block;
-    width: 100%;
-    font-size: 18px;
-    padding: 3px 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-
-  form input.error {
-    border-color: red;
-  }
-
-  form button {
-    display: block;
-    width: 100%;
-    appearance: none;
-    border-radius: 5px;
-    background-color: #84c00c;
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    height: 40px;
-    margin-top: 10px;
-  }
-
-  form button:hover {
-    background-color: #669509;
-  }
-
-  form button:disabled {
-    background-color: #dbf99f;
-    color: #333;
-  }
-
-  form button.small {
-    display: inline-block;
-    width: auto;
-    padding: 0 20px;
-    background-color: #777;
-    font-size: 14px;
-  }
-
-  form button.small:hover {
-    background-color: #999;
-  }
-
-  .rule {
-    display: flex;
-    align-items: center;
-  }
-
-  .rule button {
-    margin: 0;
-    margin-left: 10px;
-  }
-}
-
-.integrationmenu{
-  margin-top: 23px;
-  display: block;
-
-  .buttonstyle{
-    margin-right: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
-
-.integrationinfo{
-  margin-top: 10px;
-  margin-bottom: 40px;
-  display: block;
-}
-
-
-.exchangeable{
-
-  margin-bottom: 100px;
-
-  .link{
-    background-color: #505050;
-    color: white;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 5px;
-    padding: 5px;
-    margin-right: 10px;
-  }
-  .link:hover{
-    color: $red;
-    transition: 1s;
   }
 }

@@ -1,0 +1,42 @@
+@import "../_config.scss";
+
+.homescreen {
+  background: $urlimg;
+  margin: 0;
+  padding: 0;
+  color: white;
+  height: 670px;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 5px 5px 20px white;
+  font-size: 25px;
+
+  .homepagecontent {
+    position: relative;
+    top: 35%;
+    background: rgba(0,0,0,0.6);
+    padding: 50px;
+
+    a {
+      line-height: normal;
+      color: white;
+    }
+
+    a:hover{
+      text-decoration: none;
+      color: $red;
+      @include transition(.4s ease-in-out);
+    }
+
+    ul li {
+      list-style-type: none;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    h1 {
+      font-family:  'Open Sans', sans-serif;
+      font-size: 54px;
+    }
+  }
+}

@@ -6,6 +6,7 @@ $white: #ffffff;
 $lightGrey: #e6e6e6;
 $darkGrey: #333;
 $red: #ff1755;
+$urlimg : url("../images/traffic_background_alt.jpg");
 
 @mixin translateY($e){
   -webkit-transform: translateY($e);
@@ -17,74 +18,4 @@ $red: #ff1755;
   -webkit-transition: $e;
   -moz-transition: $e;
   transition: $e;
-}
-
-body {
-
-  font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
-  color: white;
-  font-weight: 400;
-  font-style: normal;
-  background: #202020;
-
-}
-
-a {
-  text-decoration: none;
-  @include transition(.4s ease-in-out);
-  cursor: pointer;
-
-  &:hover {
-    color: $red;
-    text-decoration: none;
-    @include transition(.4s ease-in-out);
-  }
-}
-
-.container-fluid {
-  margin: 0;
-  padding: 0;
-  line-height: 24px;
-}
-
-.homescreen {
-  background: url("../images/traffic_background_alt.jpg");
-  margin: 0;
-  padding: 0;
-  color: white;
-  height: 670px;
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  text-shadow: 5px 5px 20px white;
-  font-size: 25px;
-
-  .content {
-    position: relative;
-    top: 35%;
-    background: rgba(0,0,0,0.6);
-    padding: 50px;
-
-    a {
-      line-height: normal;
-      color: white;
-    }
-
-    a:hover{
-      text-decoration: none;
-      color: $red;
-      @include transition(.4s ease-in-out);
-    }
-
-    ul li {
-      list-style-type: none;
-      display: inline-block;
-      margin-right: 10px;
-    }
-
-    h1 {
-      font-family:  'Open Sans', sans-serif;
-      font-size: 54px;
-    }
-  }
 }

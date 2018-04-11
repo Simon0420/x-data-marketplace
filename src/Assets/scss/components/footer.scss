@@ -1,0 +1,54 @@
+@import "../_config.scss";
+
+/* footer */
+footer {
+
+  .footercontent {
+    width: 100%;
+    background: #505050;
+
+    .footerbox {
+      display: inline-block;
+      text-align: left;
+      border-right: 1px solid #303030;
+      padding: 10px;
+      padding-top: 20px;
+      width: 300px;
+
+      ul li {
+        list-style: none;
+        list-style-position: inherit;
+        margin-right: 30px;
+
+        &.first {
+          font-style: italic;
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .creditsgithub{
+    padding-top: 30px;
+    text-align: center;
+    position: relative;
+    background: #202020;
+    text-shadow: 1px 1px 1px black;
+    span {
+      display: block;
+      padding: 0 0 10px;
+      i {
+        margin-right: 5px;
+      }
+    }
+    a {
+      color: darken(white, 30);
+      transition:.7s;
+      padding: 8px;
+      &:hover, &:active {
+        color: $red;
+        transition:.7s;
+      }
+    }
+  }
+}

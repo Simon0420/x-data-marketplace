@@ -1,0 +1,68 @@
+@import "../_config.scss";
+
+/* menu */
+.menucontent {
+
+  .menu-item, .menu-item--small {
+    color: white;
+    margin-bottom: 5px;
+  }
+
+  a {
+    &:hover, &:active {
+      color: $red;
+      transition:.7s;
+    }
+  }
+}
+
+.contentbox  {
+  position: relative;
+  font-size: 40px;
+  text-align: center;
+  vertical-align: middle;
+
+  .banner {
+    margin-top: 30px;
+    padding-top: 50px;
+    background: url("../images/snow_alt.jpg");
+    height: 200px;
+  }
+
+  .cards {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    padding: 60px 60px 60px 60px;
+  }
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    position: relative;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    width: 250px;
+    height: 230px;
+    background: #d0d0d0;
+    padding-top: 10px;
+    margin: 25px;
+    color:black;
+  }
+
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    width: 255px;
+    height: 235px;
+    cursor: default;
+    color: #882288;
+    transition: 0.8s;
+    box-shadow: 0 4px 8px 0 rgba(180,180,180,1.5);
+  }
+
+  /* Add some padding inside the card container */
+  .container {
+    position: relative;
+    top: 10%;
+    font-size: 20px;
+  }
+}
