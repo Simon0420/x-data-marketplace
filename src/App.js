@@ -15,13 +15,13 @@ import Market from "./components/pages/market";
 import Service from "./components/pages/services";
 import Integration from "./components/pages/integration";
 import Upload from "./components/pages/upload";
-
-//includes
-import './Assets/css/default.css'
 import Dynamic from "./components/pages/upload/dynamic";
 import Central from "./components/pages/upload/central";
 import CentralLocation from "./components/pages/upload/centrallocation";
+import DatasetPage from "./components/datasetDetailsComponent/dataset";
 
+//includes
+import './Assets/css/default.css'
 
 class App extends Component {
   render() {
@@ -40,7 +40,7 @@ class App extends Component {
           <Route exact path ='/upload/dynamic' component={Dynamic} />
           <Route exact path ='/upload/central' component={Central} />
           <Route exact path ='/upload/central/description' component={CentralLocation} />
-
+          <Route path="/data/:value" component ={DatasetPage} />
           <Footer/>
       </div>
       </Router>

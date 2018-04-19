@@ -25,12 +25,12 @@ class Central extends Component {
                 <div id="outer-container">
                     <BMenu wrap={"page-wrap"}/>
                     <main id="page-wrap">
-                        <div className="datacontainer">
+                        <div className="maincontainer">
                             <div className="banner">
                                 <h1><i class="ion-upload" aria-hidden="true"></i> Upload</h1>
                             </div>
                             <div className="other">
-                                <h1>Central Dataupload</h1>
+                                <h1>Decentral Dataupload</h1>
                                 <p>
                                     "The world is being re-shaped by the convergence of social, mobile, cloud, big data, community and other powerful forces. The combination of these technologies unlocks an incredible opportunity to connect everything together in a new way and is dramatically transforming the way we live and work."
                                     - Marc Benioff

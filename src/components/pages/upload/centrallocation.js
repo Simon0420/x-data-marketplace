@@ -35,7 +35,7 @@ class CentralLocation extends Component {
                 <div id="outer-container">
                     <BMenu wrap={"page-wrap"}/>
                     <main id="page-wrap">
-                        <div className="datacontainer">
+                        <div className="maincontainer">
                             <div className="banner">
                                 <h1><i class="ion-upload" aria-hidden="true"></i> Upload</h1>
                             </div>

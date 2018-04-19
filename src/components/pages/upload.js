@@ -41,8 +41,8 @@ class Upload extends Component {
                                             There are two types of uploads: central and decentral upload...
                                         </p>
                                         <p>
-                                        <Link to="/upload/central" className='link'><i class="ion-ios-cloud-upload" aria-hidden="true"></i> Central </Link>
-                                        <Link to="/upload/dynamic" className='link'><i class="ion-ios-cloud-upload-outline" aria-hidden="true"></i> Decentral </Link>
+                                        <Link to="/upload/central" className='link'><i class="ion-ios-cloud-upload" aria-hidden="true"></i> Decentral </Link>
+                                        <Link to="/upload/dynamic" className='link'><i class="ion-ios-cloud-upload-outline" aria-hidden="true"></i> Central </Link>
                                         </p>
                                     </div>
                             </div>

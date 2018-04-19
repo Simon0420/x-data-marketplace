@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import matchSorter from "match-sorter";
 import ReactTable from "react-table";
 import {makeData, Logo, Tips} from "../utils/tableutils";
+import DatasetPage from "../datasetDetailsComponent/dataset";
+import{
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
+import "react-table/react-table.css";
+import Toolbar from "../toolbarComponent/toolbar";
+import SearchBar from "../headerComponent/searchbar";
+import BMenu from "../menuComponent/menu";
+
 
 const columns =
     [
@@ -95,10 +106,17 @@ const columns =
 
 class DatasetTable extends Component {
 
+    static datadata;
+
+    static getData() {
+        return this.datadata;
+    }
+
     constructor (props) {
         super(props)
+        this.datadata = makeData();
         this.state = {
-            data: makeData(),
+            data: this.datadata
         }
     }
 
@@ -106,6 +124,26 @@ class DatasetTable extends Component {
         return (
             <div className="table">
                 <ReactTable
+                    getTdProps={(state, rowInfo, column, instance) => {
+                        return {
+                            onClick: (e, handleOriginal) => {
+                                console.log('A Td Element was clicked!')
+                                console.log('it produced this event:', e)
+                                console.log('It was in this column:', column)
+                                console.log('It was in this row:', rowInfo)
+                                console.log('It was in this table instance:', instance)
+
+                                // IMPORTANT! React-Table uses onClick internally to trigger
+                                // events like expanding SubComponents and pivots.
+                                // By default a custom 'onClick' handler will override this functionality.
+                                // If you want to fire the original onClick handler, call the
+                                // 'handleOriginal' function.
+                                if (handleOriginal) {
+                                    handleOriginal()
+                                }
+                            }
+                        }
+                    }}
                     filterable
                     defaultFilterMethod={(filter, row) =>
                         String(row[filter.id]) === filter.value}
@@ -114,11 +152,17 @@ class DatasetTable extends Component {
                     defaultPageSize={5}
                     className="-striped -highlight"
                     SubComponent={row => {
-                        const info = row;
                         return (
                             <div style={{padding: '15px'}}>
-                                more details here (: <br />
-                                <i>You can put any component you want here, even another React Table!</i>
+
+                                <h2>Details {row.row.name}</h2>
+                                some details here...<br />
+                                More information: <Link to={{
+                                pathname: `/data/${ row.row.name }`,
+                                param1: `${ row.row.tags }`,
+                                param2: `${ row.row.size }`,
+                                param3: `${ row.row.type }`,
+                            }}>details</Link>
                             </div>
                         );}}
                 />

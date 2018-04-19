@@ -4,6 +4,11 @@ import Toolbar from "../toolbarComponent/toolbar";
 import SearchBar from "../headerComponent/searchbar";
 import BMenu from "../menuComponent/menu";
 import DatasetTable from "../tableComponent/datasetTable";
+import{
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 
 class Data extends Component {
     constructor (props) {
